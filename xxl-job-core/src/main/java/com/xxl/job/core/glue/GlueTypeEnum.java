@@ -1,6 +1,7 @@
 package com.xxl.job.core.glue;
 
 /**
+ * TODO 支持的任务类型枚举
  * Created by xuxueli on 17/4/26.
  */
 public enum GlueTypeEnum {
@@ -15,6 +16,9 @@ public enum GlueTypeEnum {
 
     private String desc;
     private boolean isScript;
+    /**
+     * 脚本启动命令
+     */
     private String cmd;
     private String suffix;
 

@@ -11,6 +11,7 @@ import com.xxl.job.core.util.ShardingUtil;
 import java.io.File;
 
 /**
+ * TODO 用于执行Shell/Python/PHP/NodeJS/PowerShell作业
  * Created by xuxueli on 17/4/27.
  */
 public class ScriptJobHandler extends IJobHandler {
@@ -53,9 +54,11 @@ public class ScriptJobHandler extends IJobHandler {
         }
 
         // cmd
+        // TODO 启动对应脚本的命令
         String cmd = glueType.getCmd();
 
         // make script file
+        // TODO 根据脚本代码以及扩展名生成对应的脚本文件
         String scriptFileName = XxlJobFileAppender.getGlueSrcPath()
                 .concat(File.separator)
                 .concat(String.valueOf(jobId))
@@ -64,6 +67,7 @@ public class ScriptJobHandler extends IJobHandler {
                 .concat(glueType.getSuffix());
         File scriptFile = new File(scriptFileName);
         if (!scriptFile.exists()) {
+            // TODO 生成脚本文件
             ScriptUtil.markScriptFile(scriptFileName, gluesource);
         }
 
@@ -79,6 +83,7 @@ public class ScriptJobHandler extends IJobHandler {
 
         // invoke
         XxlJobLogger.log("----------- script file:"+ scriptFileName +" -----------");
+        // TODO 执行Shell/Python/PHP/NodeJS/PowerShell脚本
         int exitValue = ScriptUtil.execToFile(cmd, scriptFileName, logFileName, scriptParams);
 
         if (exitValue == 0) {

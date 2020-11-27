@@ -64,6 +64,8 @@ XXL-JOB是一个轻量级分布式任务调度平台，其核心设计目标是�
 - 16、任务进度监控：支持实时监控任务进度；
 - 17、Rolling实时日志：支持在线查看调度结果，并且支持以Rolling方式实时查看执行器输出的完整的执行日志；
 - 18、GLUE：提供Web IDE，支持在线开发任务逻辑代码，动态发布，实时编译生效，省略部署上线的过程。支持30个版本的历史版本回溯。
+    - TODO 基于GroovyClassLoader动态生成IJobHandler, 还可以参考Zeppelin的Groovy解释器通过GroovyShell+groovy.lang.Script的方式来做
+    - 还可以参考Zeppelin的java解释器的StaticRepl(javax.tools.JavaCompiler动态编译Java代码来自做)
 - 19、脚本任务：支持以GLUE模式开发和运行脚本任务，包括Shell、Python、NodeJS、PHP、PowerShell等类型脚本;
 - 20、命令行任务：原生提供通用命令行任务Handler（Bean任务，"CommandJobHandler"）；业务方只需要提供命令行即可；
 - 21、任务依赖：支持配置子任务依赖，当父任务执行结束且执行成功后将会主动触发一次子任务的执行, 多个子任务用逗号分隔；

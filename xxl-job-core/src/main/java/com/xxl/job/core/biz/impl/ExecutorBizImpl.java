@@ -76,6 +76,7 @@ public class ExecutorBizImpl implements ExecutorBiz {
         // valid：jobHandler + jobThread
         GlueTypeEnum glueTypeEnum = GlueTypeEnum.match(triggerParam.getGlueType());
         if (GlueTypeEnum.BEAN == glueTypeEnum) {
+            // TODO 服务启动器打包的IJobHandler实现类作业类型(带@JobHandler注解的)
 
             // new jobhandler
             IJobHandler newJobHandler = XxlJobExecutor.loadJobHandler(triggerParam.getExecutorHandler());
@@ -98,7 +99,7 @@ public class ExecutorBizImpl implements ExecutorBiz {
             }
 
         } else if (GlueTypeEnum.GLUE_GROOVY == glueTypeEnum) {
-
+            // TODO 页面写的实现IJobHandler接口的Java代码（当初Groovy脚本来执行)
             // valid old jobThread
             if (jobThread != null &&
                     !(jobThread.getHandler() instanceof GlueJobHandler
@@ -113,6 +114,7 @@ public class ExecutorBizImpl implements ExecutorBiz {
             // valid handler
             if (jobHandler == null) {
                 try {
+                    // TODO 用于执行继承了IJobHandler Java任务实现类(这里IJobHandler实现类本身就是一个作业),这里把它当成Groovy脚本来执行
                     IJobHandler originJobHandler = GlueFactory.getInstance().loadNewInstance(triggerParam.getGlueSource());
                     jobHandler = new GlueJobHandler(originJobHandler, triggerParam.getGlueUpdatetime());
                 } catch (Exception e) {
@@ -121,7 +123,7 @@ public class ExecutorBizImpl implements ExecutorBiz {
                 }
             }
         } else if (glueTypeEnum!=null && glueTypeEnum.isScript()) {
-
+            // TODO Shell/Python/PHP/NodeJS/PowerShell作业
             // valid old jobThread
             if (jobThread != null &&
                     !(jobThread.getHandler() instanceof ScriptJobHandler
@@ -163,6 +165,7 @@ public class ExecutorBizImpl implements ExecutorBiz {
 
         // replace thread (new or exists invalid)
         if (jobThread == null) {
+            // TODO 注册jobHandler
             jobThread = XxlJobExecutor.registJobThread(triggerParam.getJobId(), jobHandler, removeOldReason);
         }
 

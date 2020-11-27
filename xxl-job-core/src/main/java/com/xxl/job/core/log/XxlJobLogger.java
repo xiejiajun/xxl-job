@@ -40,6 +40,7 @@ public class XxlJobLogger {
         // appendlog
         String logFileName = XxlJobFileAppender.contextHolder.get();
         if (logFileName!=null && logFileName.trim().length()>0) {
+            // TODO 任务日志打印
             XxlJobFileAppender.appendLog(logFileName, formatAppendLog);
         } else {
             logger.info(">>>>>>>>>>> {}", formatAppendLog);
